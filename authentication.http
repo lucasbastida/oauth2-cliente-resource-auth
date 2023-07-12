@@ -1,0 +1,18 @@
+# curl -X POST -u client1:secret1 'http://localhost:6060/oauth/token?grant_type=client_credentials&amp;scope=read'
+POST http://localhost:6060/oauth/token?grant_type=client_credentials&amp;scope=read
+Authorization: Basic client1 secret1
+
+> {% client.global.set("access_token", response.body.access_token); %}
+
+###
+
+# curl -H 'Authorization: Bearer {{access_token}}' 'http://localhost:7070/demo'
+GET http://localhost:7070/demo
+Authorization: Bearer {{access_token}}
+
+###
+
+# client no authentication
+GET http://localhost:8080/test
+
+###
